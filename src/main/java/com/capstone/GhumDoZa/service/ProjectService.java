@@ -14,10 +14,10 @@ public class ProjectService {
   private final ProjectRepository projectRepository;
   private final ProjectEntityMapper projectEntityMapper;
 
-  public ProjectListDto getProjectsOfUser() {
+  public ProjectListDto getProjectsOfUser(Long userId) {
     return ProjectListDto.builder()
         .projectDtos(
-            projectRepository.findProjectsOfUserWithId(1L)
+            projectRepository.findProjectsOfUserWithId(userId)
                 .stream().map(projectEntityMapper::entityToDto)
                 .collect(Collectors.toSet()))
         .build();

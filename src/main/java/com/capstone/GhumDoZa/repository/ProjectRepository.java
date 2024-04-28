@@ -21,6 +21,6 @@ public interface ProjectRepository extends
                            FROM project_team
                                     LEFT JOIN project_team pt ON p.id = pt.project_id
                                     LEFT JOIN team_user tu ON pt.team_id = tu.team_id
-                           WHERE tu.user_id = 1);""", nativeQuery = true)
+                           WHERE tu.user_id = ?1);""", nativeQuery = true)
   Set<ProjectEntity> findProjectsOfUserWithId(@NonNull Long id);
 }
