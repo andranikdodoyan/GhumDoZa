@@ -26,6 +26,4 @@ public class UserEntity {
   @Column(name = "last_name")
   private String lastName;
 
-  @Column(name = "role")
-  private String role;
 }

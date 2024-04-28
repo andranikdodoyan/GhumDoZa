@@ -26,4 +26,7 @@ public class ProjectEntity {
   @Column(name = "code", nullable = false)
   private String code;
 
+  @Column(name = "creator_id", nullable = false)
+  private Long creatorId;
+
 }
