@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS "ticket"
     "headline"  VARCHAR,
     body        VARCHAR,
     creator_id  BIGINT REFERENCES "user" (id),
-    assignee_id BIGINT REFERENCES "user" (id)
+    assignee_id BIGINT REFERENCES "user" (id),
+    status      VARCHAR DEFAULT 'OPEN_DEV'
 );
 
 CREATE TABLE IF NOT EXISTS "team"

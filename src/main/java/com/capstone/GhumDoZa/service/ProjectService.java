@@ -1,6 +1,6 @@
 package com.capstone.GhumDoZa.service;
 
-import com.capstone.GhumDoZa.dto.ProjectListDto;
+import com.capstone.GhumDoZa.dto.project.ProjectListDto;
 import com.capstone.GhumDoZa.mapper.ProjectEntityMapper;
 import com.capstone.GhumDoZa.repository.ProjectRepository;
 import java.util.stream.Collectors;

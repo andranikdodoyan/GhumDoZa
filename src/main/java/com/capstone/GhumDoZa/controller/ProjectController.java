@@ -1,6 +1,6 @@
 package com.capstone.GhumDoZa.controller;
 
-import com.capstone.GhumDoZa.dto.ProjectListDto;
+import com.capstone.GhumDoZa.dto.project.ProjectListDto;
 import com.capstone.GhumDoZa.service.ProjectService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

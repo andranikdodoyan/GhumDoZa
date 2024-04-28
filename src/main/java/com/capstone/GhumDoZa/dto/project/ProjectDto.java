@@ -1,4 +1,4 @@
-package com.capstone.GhumDoZa.dto;
+package com.capstone.GhumDoZa.dto.project;
 
 import lombok.Builder;
 import lombok.Getter;

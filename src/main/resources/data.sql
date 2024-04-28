@@ -54,3 +54,6 @@ VALUES (1, 3),
        (2, 4),
        (3, 2),
        (4, 1);
+
+INSERT INTO ticket(id, project_id, serial_id, headline, body, creator_id, assignee_id)
+VALUES (1, 1, 1, 'First ever ticket''s headline', 'the body of the ticket', 1, 2);

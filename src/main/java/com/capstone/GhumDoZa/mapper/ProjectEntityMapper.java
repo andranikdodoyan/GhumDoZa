@@ -1,6 +1,6 @@
 package com.capstone.GhumDoZa.mapper;
 
-import com.capstone.GhumDoZa.dto.ProjectDto;
+import com.capstone.GhumDoZa.dto.project.ProjectDto;
 import com.capstone.GhumDoZa.entity.ProjectEntity;
 import com.capstone.GhumDoZa.service.UserService;
 import lombok.AllArgsConstructor;
