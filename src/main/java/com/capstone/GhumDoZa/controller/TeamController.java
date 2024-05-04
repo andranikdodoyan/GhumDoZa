@@ -2,6 +2,7 @@ package com.capstone.GhumDoZa.controller;
 
 import com.capstone.GhumDoZa.dto.team.TeamListDto;
 import com.capstone.GhumDoZa.service.TeamService;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ public class TeamController {
   private final TeamService teamService;
 
   @GetMapping("/list/{userId}")
-  public ResponseEntity<TeamListDto> getTeamsOfUser(@PathVariable Long userId) {
+  public ResponseEntity<TeamListDto> getTeamsOfUser(@PathVariable UUID userId) {
     return ResponseEntity.ok(teamService.getTeamsOfUser(userId));
   }
 }

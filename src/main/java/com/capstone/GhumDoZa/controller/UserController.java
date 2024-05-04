@@ -3,6 +3,7 @@ package com.capstone.GhumDoZa.controller;
 import com.capstone.GhumDoZa.dto.user.UserLoginInfoDto;
 import com.capstone.GhumDoZa.dto.user.UserProfileDto;
 import com.capstone.GhumDoZa.service.UserService;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class UserController {
   private final UserService userService;
 
   @GetMapping("/{id}")
-  public ResponseEntity<String> getUserName(@PathVariable Long id) {
+  public ResponseEntity<String> getUserName(@PathVariable UUID id) {
     return ResponseEntity.ok(userService.getNameById(id));
   }
 

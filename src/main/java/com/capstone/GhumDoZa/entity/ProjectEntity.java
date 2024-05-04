@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,9 +17,9 @@ import lombok.Setter;
 public class ProjectEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "id", nullable = false)
-  private Long id;
+  private UUID id;
 
   @Column(name = "name", nullable = false)
   private String name;
@@ -27,6 +28,6 @@ public class ProjectEntity {
   private String code;
 
   @Column(name = "creator_id", nullable = false)
-  private Long creatorId;
+  private UUID creatorId;
 
 }

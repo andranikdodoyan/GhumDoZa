@@ -11,6 +11,7 @@ public class UserEntityMapper {
 
   public UserProfileDto entityToProfile(UserEntity user) {
     return UserProfileDto.builder()
+        .id(user.getId())
         .firstName(user.getFirstName())
         .lastName(user.getLastName())
         .build();

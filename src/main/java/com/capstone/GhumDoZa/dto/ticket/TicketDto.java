@@ -1,6 +1,7 @@
 package com.capstone.GhumDoZa.dto.ticket;
 
 import com.capstone.GhumDoZa.enums.TicketStatus;
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class TicketDto {
 
-  private Long id;
+  private UUID id;
   private TicketStatus status;
 }

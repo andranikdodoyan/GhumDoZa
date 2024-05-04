@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,9 +20,9 @@ import lombok.Setter;
 public class TicketEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "id", nullable = false)
-  private Long id;
+  private UUID id;
 
   @Column(name = "serial_id", nullable = false)
   private String serialId;
@@ -33,10 +34,10 @@ public class TicketEntity {
   private String body;
 
   @Column(name = "assignee_id")
-  private Long assigneeId;
+  private UUID assigneeId;
 
   @Column(name = "creator_id", nullable = false)
-  private Long creatorId;
+  private UUID creatorId;
 
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
