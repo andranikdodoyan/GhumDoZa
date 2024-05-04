@@ -30,10 +30,8 @@ public class UserController {
     return ResponseEntity.ok(userService.login(loginInfo));
   }
 
-  @PutMapping(value="/register")
-  public ResponseEntity<UserProfileDto> register(
-      @RequestBody UserLoginInfoDto loginInfoDto
-  ) {
+  @PutMapping(value = "/register")
+  public ResponseEntity<UserProfileDto> register(@RequestBody UserLoginInfoDto loginInfoDto) {
     return ResponseEntity.ok(userService.register(loginInfoDto));
   }
 }

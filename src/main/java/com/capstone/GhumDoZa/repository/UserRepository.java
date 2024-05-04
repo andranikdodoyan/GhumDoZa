@@ -13,6 +13,5 @@ public interface UserRepository extends
 
   @NonNull Optional<UserEntity> findById(@NonNull UUID id);
 
-  Optional<UserEntity> findByLoginAndPassword(String login, String hashedPassword);
   Optional<UserEntity> findByLogin(String login);
 }
