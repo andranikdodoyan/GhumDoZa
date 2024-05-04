@@ -1,8 +1,8 @@
 package com.capstone.GhumDoZa.controller;
 
-import com.capstone.GhumDoZa.dto.Message;
-import com.capstone.GhumDoZa.dto.OpenAIRequest;
-import com.capstone.GhumDoZa.dto.OpenAIResponse;
+import com.capstone.GhumDoZa.dto.openai.Message;
+import com.capstone.GhumDoZa.dto.openai.OpenAIRequest;
+import com.capstone.GhumDoZa.dto.openai.OpenAIResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Value;

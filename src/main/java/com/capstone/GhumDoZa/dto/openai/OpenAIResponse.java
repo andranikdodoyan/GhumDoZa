@@ -1,4 +1,4 @@
-package com.capstone.GhumDoZa.dto;
+package com.capstone.GhumDoZa.dto.openai;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
