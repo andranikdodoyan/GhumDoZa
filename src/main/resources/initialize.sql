@@ -9,14 +9,16 @@ DROP TABLE IF EXISTS "ticket" CASCADE;
 --Create the Database
 CREATE TABLE IF NOT EXISTS "user"
 (
-    id         SERIAL PRIMARY KEY,
+    id         BIGSERIAL PRIMARY KEY,
     first_name VARCHAR,
-    last_name  VARCHAR
+    last_name  VARCHAR,
+    "login"    VARCHAR,
+    "password" VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS "project"
 (
-    id         SERIAL PRIMARY KEY,
+    id         BIGSERIAL PRIMARY KEY,
     "name"     VARCHAR,
     code       VARCHAR,
     creator_id BIGINT REFERENCES "user" (id)
@@ -24,7 +26,7 @@ CREATE TABLE IF NOT EXISTS "project"
 
 CREATE TABLE IF NOT EXISTS "ticket"
 (
-    id          SERIAL PRIMARY KEY,
+    id          BIGSERIAL PRIMARY KEY,
     project_id  BIGINT REFERENCES project (id),
     serial_id   VARCHAR,
     "headline"  VARCHAR,
@@ -36,7 +38,7 @@ CREATE TABLE IF NOT EXISTS "ticket"
 
 CREATE TABLE IF NOT EXISTS "team"
 (
-    id     SERIAL PRIMARY KEY,
+    id     BIGSERIAL PRIMARY KEY,
     "name" VARCHAR
 );
 
@@ -50,5 +52,5 @@ CREATE TABLE IF NOT EXISTS "team_user"
 (
     team_id BIGINT REFERENCES team (id),
     user_id BIGINT REFERENCES "user" (id),
-    role    VARCHAR
+    "role"    VARCHAR
 );

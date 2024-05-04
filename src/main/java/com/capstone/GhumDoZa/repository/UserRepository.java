@@ -11,4 +11,6 @@ public interface UserRepository extends
     JpaRepository<UserEntity, Long> {
 
   @NonNull Optional<UserEntity> findById(@NonNull Long id);
+
+  Optional<UserEntity> findByLoginAndPassword(String login, String hashedPassword);
 }
