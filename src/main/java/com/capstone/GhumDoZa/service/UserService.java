@@ -26,7 +26,7 @@ public class UserService {
   }
 
   public UserProfileDto login(UserLoginInfoDto loginInfo) {
-    UserEntity user = userRepository.findByLogin(loginInfo.getLogin())
+    UserEntity user = userRepository.findByLogin(loginInfo.getUsername())
         .orElseThrow();
 
     if (passwordAuthentication.authenticate(loginInfo.getPassword().toCharArray(),
@@ -38,7 +38,7 @@ public class UserService {
   }
 
   public UserProfileDto register(UserLoginInfoDto loginInfoDto) {
-    String login = loginInfoDto.getLogin();
+    String login = loginInfoDto.getUsername();
     if (userRepository.existsByLogin(login)) {
       throw new UserAlreadyExistsException();
     }
