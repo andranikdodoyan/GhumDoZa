@@ -14,26 +14,11 @@ import javax.crypto.spec.PBEKeySpec;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/**
- * Hash passwords for storage, and test passwords against password tokens.
- * <p>
- * Instances of this class can be used concurrently by multiple threads.
- *
- * @author erickson
- * @see <a href="http://stackoverflow.com/a/2861125/3474">StackOverflow</a>
- */
 @Component
 @AllArgsConstructor
 public final class PasswordAuthentication {
 
-  /**
-   * Each token produced by this class uses this identifier as a prefix.
-   */
   public static final String ID = "$31$";
-
-  /**
-   * The minimum recommended cost, used by default
-   */
   public static final int DEFAULT_COST = 16;
 
   private static final String ALGORITHM = "PBKDF2WithHmacSHA1";
