@@ -2,9 +2,8 @@ package com.capstone.GhumDoZa.mapper;
 
 import com.capstone.GhumDoZa.dto.comment.CommentDto;
 import com.capstone.GhumDoZa.entity.CommentEntity;
-import com.capstone.GhumDoZa.entity.UserEntity;
-import com.capstone.GhumDoZa.exception.UserNotFoundException;
-import com.capstone.GhumDoZa.repository.UserRepository;
+import java.time.Instant;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,15 +11,24 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class CommentEntityMapper {
 
-  private final UserRepository userRepository;
-
   public CommentDto entityToDto(CommentEntity entity) {
-    UserEntity creator = userRepository.findById(entity.getCreatorId())
-        .orElseThrow(UserNotFoundException::new);
     return CommentDto.builder()
         .body(entity.getBody())
-        .creatorName(creator.getFirstName() + " " + creator.getLastName())
+        .creatorId(entity.getCreatorId())
         .createdAt(entity.getCreatedAt())
+        .ticketId(entity.getTicketId())
         .build();
+  }
+
+  public CommentEntity dtoToEntity(CommentDto commentDto) {
+    CommentEntity comment = CommentEntity.builder()
+        .id(UUID.randomUUID())
+        .creatorId(commentDto.getCreatorId())
+        .body(commentDto.getBody())
+        .ticketId(commentDto.getTicketId())
+        .createdAt(Instant.now())
+        .build();
+
+    return comment;
   }
 }
