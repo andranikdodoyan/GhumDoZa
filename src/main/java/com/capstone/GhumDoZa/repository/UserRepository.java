@@ -14,4 +14,5 @@ public interface UserRepository extends
   @NonNull Optional<UserEntity> findById(@NonNull UUID id);
 
   Optional<UserEntity> findByLogin(String login);
+  Boolean existsByLogin(String login);
 }

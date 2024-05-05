@@ -3,6 +3,7 @@ package com.capstone.GhumDoZa.service;
 import com.capstone.GhumDoZa.dto.user.UserLoginInfoDto;
 import com.capstone.GhumDoZa.dto.user.UserProfileDto;
 import com.capstone.GhumDoZa.entity.UserEntity;
+import com.capstone.GhumDoZa.exception.UserAlreadyExistsException;
 import com.capstone.GhumDoZa.exception.WrongLoginException;
 import com.capstone.GhumDoZa.mapper.UserEntityMapper;
 import com.capstone.GhumDoZa.repository.UserRepository;
@@ -38,6 +39,9 @@ public class UserService {
 
   public UserProfileDto register(UserLoginInfoDto loginInfoDto) {
     String login = loginInfoDto.getLogin();
+    if (userRepository.existsByLogin(login)) {
+      throw new UserAlreadyExistsException();
+    }
     String hashedPassword = passwordAuthentication.hash(loginInfoDto.getPassword().toCharArray());
 
     UserEntity user = UserEntity.builder()

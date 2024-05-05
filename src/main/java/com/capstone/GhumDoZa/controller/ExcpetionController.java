@@ -1,6 +1,7 @@
 package com.capstone.GhumDoZa.controller;
 
 import com.capstone.GhumDoZa.exception.TicketNotFoundException;
+import com.capstone.GhumDoZa.exception.UserAlreadyExistsException;
 import com.capstone.GhumDoZa.exception.UserNotFoundException;
 import com.capstone.GhumDoZa.exception.WrongLoginException;
 import org.springframework.http.HttpStatus;
@@ -21,5 +22,10 @@ public class ExcpetionController {
   @ExceptionHandler(WrongLoginException.class)
   public ResponseEntity<ErrorResponse> handleWrongLoginException() {
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+  }
+
+  @ExceptionHandler(UserAlreadyExistsException.class)
+  public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException() {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
   }
 }
