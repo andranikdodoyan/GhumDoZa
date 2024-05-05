@@ -13,4 +13,6 @@ public class TicketDto {
 
   private UUID id;
   private TicketStatus status;
+  private String headline;
+  private String body;
 }
