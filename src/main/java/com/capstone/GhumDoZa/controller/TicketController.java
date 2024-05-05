@@ -30,4 +30,9 @@ public class TicketController {
   public ResponseEntity<TicketListDto> getTicketsOfUser(@PathVariable UUID userId) {
     return ResponseEntity.ok(ticketService.getTicketsOfUser(userId));
   }
+
+  @GetMapping("/list/project/{projectId}")
+  public ResponseEntity<TicketListDto> getTicketsOfProject(@PathVariable UUID projectId) {
+    return ResponseEntity.ok(ticketService.getTicketsOfProject(projectId));
+  }
 }

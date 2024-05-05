@@ -37,4 +37,13 @@ public class TicketService {
             .collect(Collectors.toSet()))
         .build();
   }
+
+  public TicketListDto getTicketsOfProject(UUID projectId) {
+    List<TicketEntity> tickets = ticketRepository.findAllByProjectId(projectId);
+    return TicketListDto.builder()
+        .ticketDtos(tickets.stream()
+            .map(ticketEntityMapper::entityToDto)
+            .collect(Collectors.toSet()))
+        .build();
+  }
 }

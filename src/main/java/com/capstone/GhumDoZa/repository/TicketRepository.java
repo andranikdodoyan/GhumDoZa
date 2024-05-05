@@ -15,4 +15,5 @@ public interface TicketRepository extends
   @NonNull Optional<TicketEntity> findById(@NonNull UUID id);
 
   List<TicketEntity> findAllByAssigneeId(UUID assigneeId);
+  List<TicketEntity> findAllByProjectId(UUID projectId);
 }
