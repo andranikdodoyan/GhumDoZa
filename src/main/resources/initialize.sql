@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS "team_user" CASCADE;
 DROP TABLE IF EXISTS "project" CASCADE;
 DROP TABLE IF EXISTS "project_team" CASCADE;
 DROP TABLE IF EXISTS "ticket" CASCADE;
+DROP TABLE IF EXISTS "comment" CASCADE;
 
 --Create the Database
 CREATE TABLE IF NOT EXISTS "user"
@@ -52,5 +53,14 @@ CREATE TABLE IF NOT EXISTS "team_user"
 (
     team_id UUID REFERENCES team (id),
     user_id UUID REFERENCES "user" (id),
-    "role"    VARCHAR
+    "role"  VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS "comment"
+(
+    id         UUID PRIMARY KEY,
+    ticket_id  UUID REFERENCES ticket (id),
+    body       VARCHAR,
+    creator_id UUID REFERENCES "user" (id),
+    created_at TIMESTAMP
 );

@@ -1,7 +1,7 @@
 package com.capstone.GhumDoZa.repository;
 
 import com.capstone.GhumDoZa.entity.TicketEntity;
-import com.capstone.GhumDoZa.entity.UserEntity;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.NonNull;
@@ -13,4 +13,7 @@ public interface TicketRepository extends
     JpaRepository<TicketEntity, UUID> {
 
   @NonNull Optional<TicketEntity> findById(@NonNull UUID id);
+
+  List<TicketEntity> findAllByAssigneeId(UUID assigneeId);
+  List<TicketEntity> findAllByProjectId(UUID projectId);
 }

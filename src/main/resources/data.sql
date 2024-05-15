@@ -42,10 +42,14 @@ VALUES ('efdc3ab6-a454-48ef-a287-0c933eb0d5de', 'fbb63c65-270e-4da6-bfb8-8ee67e5
        ('2296fbc1-90ab-49b8-8043-470af3015e79', '3adf2ea9-f3c4-4018-938b-361734f6938a');
 
 INSERT INTO project(id, "name", code, creator_id)
-VALUES ('0d4a3a6f-021c-4b7b-b342-6f78589b5564', 'Capstone', 'CPS', '0a8ba285-0558-4e7b-85fd-b32b8b1c2a4f'),
-       ('bd09feb2-156b-4d7a-972d-ce83a2ecd228', 'Kvartal''s project', 'KVP', 'b0d3c291-fccd-4c69-a62f-d70836e4ef12'),
-       ('2742ca8f-9b6d-4950-8a0b-ce47bc1fb833', 'Shirak', 'SH', 'a6cac03a-fe57-493b-a323-52d34e7989f7'),
-       ('d6ecf171-ba66-4271-bbbe-499c17628bbf', 'AUA studies', 'AUA', '5bf16ecb-e5df-4b9b-85ca-f442dd692082');
+VALUES ('0d4a3a6f-021c-4b7b-b342-6f78589b5564', 'Capstone', 'CPS',
+        '0a8ba285-0558-4e7b-85fd-b32b8b1c2a4f'),
+       ('bd09feb2-156b-4d7a-972d-ce83a2ecd228', 'Kvartal''s project', 'KVP',
+        'b0d3c291-fccd-4c69-a62f-d70836e4ef12'),
+       ('2742ca8f-9b6d-4950-8a0b-ce47bc1fb833', 'Shirak', 'SH',
+        'a6cac03a-fe57-493b-a323-52d34e7989f7'),
+       ('d6ecf171-ba66-4271-bbbe-499c17628bbf', 'AUA studies', 'AUA',
+        '5bf16ecb-e5df-4b9b-85ca-f442dd692082');
 
 INSERT INTO project_team(project_id, team_id)
 VALUES ('0d4a3a6f-021c-4b7b-b342-6f78589b5564', '93802199-17ab-4cea-8b70-5e783480ef52'),
@@ -55,5 +59,10 @@ VALUES ('0d4a3a6f-021c-4b7b-b342-6f78589b5564', '93802199-17ab-4cea-8b70-5e78348
 
 INSERT INTO ticket(id, project_id, serial_id, headline, body, creator_id, assignee_id)
 VALUES ('9187d91e-4792-4589-ac15-fcbc13570459', '0d4a3a6f-021c-4b7b-b342-6f78589b5564', 1,
-        'First ever ticket''s headline', 'the body of the ticket', 'fbb63c65-270e-4da6-bfb8-8ee67e560c4d',
+        'First ever ticket''s headline', 'the body of the ticket',
+        'fbb63c65-270e-4da6-bfb8-8ee67e560c4d',
         'b293084a-1fe1-458b-8218-bcdccf1418f5');
+
+INSERT INTO comment(id, ticket_id, body, creator_id, created_at)
+VALUES ('8dde53c6-dbb1-4044-92c4-b1da631c4834', '9187d91e-4792-4589-ac15-fcbc13570459',
+        'comment body', 'b0d3c291-fccd-4c69-a62f-d70836e4ef12', now())
