@@ -1,6 +1,8 @@
 package com.capstone.GhumDoZa.service;
 
+import com.capstone.GhumDoZa.dto.project.ProjectDto;
 import com.capstone.GhumDoZa.dto.project.ProjectListDto;
+import com.capstone.GhumDoZa.entity.ProjectEntity;
 import com.capstone.GhumDoZa.mapper.ProjectEntityMapper;
 import com.capstone.GhumDoZa.repository.ProjectRepository;
 import java.util.UUID;
@@ -22,5 +24,17 @@ public class ProjectService {
                 .stream().map(projectEntityMapper::entityToDto)
                 .collect(Collectors.toSet()))
         .build();
+  }
+
+  public ProjectDto create(ProjectDto projectDto) {
+    ProjectEntity project = ProjectEntity.builder()
+        .id(UUID.randomUUID())
+        .creatorId(UUID.fromString(projectDto.getCreatorId()))
+        .name(projectDto.getName())
+        .code(projectDto.getCode())
+        .build();
+
+    projectRepository.save(project);
+    return projectEntityMapper.entityToDto(project);
   }
 }

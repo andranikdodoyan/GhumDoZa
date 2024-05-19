@@ -1,7 +1,10 @@
-package com.capstone.GhumDoZa.entity;
+package com.capstone.GhumDoZa.entity.relationEntity;
 
+import com.capstone.GhumDoZa.enums.UserRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,27 +16,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "project", schema = "public")
+@Table(name = "team_user", schema = "public")
 @Entity
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectEntity {
+public class TeamUserEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "id", nullable = false)
   private UUID id;
 
-  @Column(name = "name", nullable = false)
-  private String name;
+  @Column(name = "team_id", nullable = false)
+  private UUID teamId;
 
-  @Column(name = "code", nullable = false)
-  private String code;
+  @Column(name = "user_id", nullable = false)
+  private UUID userId;
 
-  @Column(name = "creator_id", nullable = false)
-  private UUID creatorId;
-
+  @Column(name = "role")
+  @Enumerated(EnumType.STRING)
+  private UserRole role;
 }

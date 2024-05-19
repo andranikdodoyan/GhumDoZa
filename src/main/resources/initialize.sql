@@ -45,12 +45,14 @@ CREATE TABLE IF NOT EXISTS "team"
 
 CREATE TABLE IF NOT EXISTS "project_team"
 (
+    id         UUID PRIMARY KEY,
     project_id UUID REFERENCES project (id),
     team_id    UUID REFERENCES team (id)
 );
 
 CREATE TABLE IF NOT EXISTS "team_user"
 (
+    id      UUID PRIMARY KEY,
     team_id UUID REFERENCES team (id),
     user_id UUID REFERENCES "user" (id),
     "role"  VARCHAR
