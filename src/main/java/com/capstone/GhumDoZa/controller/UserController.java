@@ -25,7 +25,7 @@ public class UserController {
     return ResponseEntity.ok(userService.getNameById(id));
   }
 
-  @GetMapping("/login")
+  @PutMapping("/login")
   public ResponseEntity<UserProfileDto> login(@RequestBody UserLoginInfoDto loginInfo) {
     return ResponseEntity.ok(userService.login(loginInfo));
   }
