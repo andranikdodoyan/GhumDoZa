@@ -27,9 +27,6 @@ public class TicketEntity {
   @Column(name = "project_id")
   private UUID projectId;
 
-  @Column(name = "serial_id", nullable = false)
-  private String serialId;
-
   @Column(name = "headline", nullable = false)
   private String headline;
 

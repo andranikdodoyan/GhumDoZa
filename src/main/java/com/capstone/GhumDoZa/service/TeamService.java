@@ -32,7 +32,6 @@ public class TeamService {
 
   public TeamDto addUser(TeamAddMemberDto teamAddMemberDto) {
     TeamUserEntity teamUserEntity = TeamUserEntity.builder()
-        .id(UUID.randomUUID())
         .teamId(UUID.fromString(teamAddMemberDto.getTeamId()))
         .userId(UUID.fromString(teamAddMemberDto.getUserId()))
         .role(UserRole.valueOf(teamAddMemberDto.getRole()))

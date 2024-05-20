@@ -24,4 +24,6 @@ public interface ProjectRepository extends
                                     LEFT JOIN team_user tu ON pt.team_id = tu.team_id
                            WHERE tu.user_id = ?1) OR p.creator_id=?1""", nativeQuery = true)
   Set<ProjectEntity> findProjectsOfUserWithId(@NonNull UUID id);
+
+  Optional<ProjectEntity> findByCode(String code);
 }

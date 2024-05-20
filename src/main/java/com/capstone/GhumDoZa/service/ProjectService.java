@@ -28,10 +28,10 @@ public class ProjectService {
 
   public ProjectDto create(ProjectDto projectDto) {
     ProjectEntity project = ProjectEntity.builder()
-        .id(UUID.randomUUID())
-        .creatorId(UUID.fromString(projectDto.getCreatorId()))
+        .creatorId(projectDto.getCreatorId())
         .name(projectDto.getName())
         .code(projectDto.getCode())
+        .description(projectDto.getDescription())
         .build();
 
     projectRepository.save(project);

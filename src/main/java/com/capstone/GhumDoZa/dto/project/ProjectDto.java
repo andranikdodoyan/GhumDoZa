@@ -1,5 +1,6 @@
 package com.capstone.GhumDoZa.dto.project;
 
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,6 @@ public class ProjectDto {
 
   private String name;
   private String code;
-  private String creatorId;
+  private UUID creatorId;
   private String description;
 }

@@ -1,8 +1,10 @@
 package com.capstone.GhumDoZa.controller;
 
+import com.capstone.GhumDoZa.dto.ticket.TicketCreateRequestDto;
 import com.capstone.GhumDoZa.dto.ticket.TicketDto;
 import com.capstone.GhumDoZa.dto.ticket.TicketListDto;
 import com.capstone.GhumDoZa.service.TicketService;
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +22,10 @@ public class TicketController {
 
   private final TicketService ticketService;
 
-  @PostMapping("/update")
-  public ResponseEntity<TicketDto> updateTicket(
-      @RequestBody final TicketDto ticketDto) {
-    return ResponseEntity.ok(ticketService.updateStatus(ticketDto));
+  @PostMapping("/create")
+  public ResponseEntity<TicketDto> createTicket(
+      @RequestBody final TicketCreateRequestDto ticketCreateRequestDto) {
+    return ResponseEntity.ok(ticketService.createTicket(ticketCreateRequestDto));
   }
 
   @GetMapping("/list/{userId}")
@@ -35,4 +37,14 @@ public class TicketController {
   public ResponseEntity<TicketListDto> getTicketsOfProject(@PathVariable UUID projectId) {
     return ResponseEntity.ok(ticketService.getTicketsOfProject(projectId));
   }
+
+//  @PostMapping("/update")
+//  public ResponseEntity<TicketDto> updateTicket(
+//      @RequestBody final TicketDto ticketDto) {
+//    return ResponseEntity.ok(ticketService.updateStatus(ticketDto));
+//  }
+//
+
+//
+
 }
