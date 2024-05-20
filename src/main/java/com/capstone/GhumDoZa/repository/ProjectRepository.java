@@ -18,7 +18,7 @@ public interface ProjectRepository extends
   @Query(value = """
       SELECT p.*
       FROM project p
-      WHERE p.id IN (SELECT id
+      WHERE p.id IN (SELECT pt.project_id
                            FROM project_team
                                     LEFT JOIN project_team pt ON p.id = pt.project_id
                                     LEFT JOIN team_user tu ON pt.team_id = tu.team_id
