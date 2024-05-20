@@ -10,6 +10,7 @@ import lombok.Setter;
 @Builder
 public class ProjectDto {
 
+  private UUID projectId;
   private String name;
   private String code;
   private UUID creatorId;

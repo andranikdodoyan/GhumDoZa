@@ -15,6 +15,7 @@ public class ProjectEntityMapper {
 
   public ProjectDto entityToDto(ProjectEntity entity) {
     return ProjectDto.builder()
+        .projectId(entity.getId())
         .creatorId(entity.getCreatorId())
         .name(entity.getName())
         .code(entity.getCode())
