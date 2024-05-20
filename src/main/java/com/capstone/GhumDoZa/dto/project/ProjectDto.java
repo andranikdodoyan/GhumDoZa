@@ -13,4 +13,5 @@ public class ProjectDto {
   private String code;
   private String creatorId;
   private String creatorUsername;
+  private String description;
 }

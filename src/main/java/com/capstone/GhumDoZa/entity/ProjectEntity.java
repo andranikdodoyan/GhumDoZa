@@ -36,4 +36,7 @@ public class ProjectEntity {
   @Column(name = "creator_id", nullable = false)
   private UUID creatorId;
 
+  @Column(name = "description", nullable = false)
+  private String description;
+
 }

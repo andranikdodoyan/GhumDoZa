@@ -17,6 +17,7 @@ public class ProjectEntityMapper {
         .name(entity.getName())
         .code(entity.getCode())
         .creatorUsername(userService.getNameById(entity.getCreatorId()))
+        .description(entity.getDescription())
         .build();
   }
 }

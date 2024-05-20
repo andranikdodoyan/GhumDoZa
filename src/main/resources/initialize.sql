@@ -19,10 +19,11 @@ CREATE TABLE IF NOT EXISTS "user"
 
 CREATE TABLE IF NOT EXISTS "project"
 (
-    id         UUID PRIMARY KEY,
-    "name"     VARCHAR,
-    code       VARCHAR,
-    creator_id UUID REFERENCES "user" (id)
+    id          UUID PRIMARY KEY,
+    "name"      VARCHAR,
+    code        VARCHAR,
+    creator_id  UUID REFERENCES "user" (id),
+    description VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS "ticket"
