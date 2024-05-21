@@ -27,7 +27,7 @@ public class TicketService {
   private final ProjectRepository projectRepository;
   private final TicketEntityMapper ticketEntityMapper;
 
-//  @Transactional
+  //  @Transactional
 //  public TicketDto updateStatus(TicketDto ticketDto) {
 //    TicketEntity ticket = ticketRepository.findById(ticketDto.getId())
 //        .orElseThrow(TicketNotFoundException::new);
@@ -52,7 +52,8 @@ public class TicketService {
     UUID projectId = project.getId();
     int serialNumber = ticketRepository.findAllByProjectId(projectId).size();
 
-    String headline = String.format("[%s - %s] %s", projectCode, serialNumber, ticketCreateRequestDto.getHeadline());
+    String headline = String.format("[%s - %s] %s", projectCode, serialNumber,
+        ticketCreateRequestDto.getHeadline());
     String body = ticketCreateRequestDto.getBody();
     UUID creatorId = UUID.fromString(ticketCreateRequestDto.getCreatorId());
     TicketStatus status = TicketStatus.TO_DO;
@@ -78,5 +79,11 @@ public class TicketService {
             .map(ticketEntityMapper::entityToDto)
             .collect(Collectors.toSet()))
         .build();
+  }
+
+  public Boolean deleteTicket(UUID ticketId) {
+    ticketRepository.deleteById(ticketId);
+
+    return !ticketRepository.existsById(ticketId);
   }
 }

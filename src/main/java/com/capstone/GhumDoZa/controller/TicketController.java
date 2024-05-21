@@ -9,6 +9,7 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,11 @@ public class TicketController {
   @GetMapping("/list/project/{projectId}")
   public ResponseEntity<TicketListDto> getTicketsOfProject(@PathVariable UUID projectId) {
     return ResponseEntity.ok(ticketService.getTicketsOfProject(projectId));
+  }
+
+  @DeleteMapping("delete/{ticketId}")
+  public ResponseEntity<Boolean> deleteTicket(@PathVariable UUID ticketId) {
+    return ResponseEntity.ok(ticketService.deleteTicket(ticketId));
   }
 
 //  @PostMapping("/update")
