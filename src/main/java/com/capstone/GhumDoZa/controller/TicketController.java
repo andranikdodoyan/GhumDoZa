@@ -44,13 +44,13 @@ public class TicketController {
     return ResponseEntity.ok(ticketService.deleteTicket(ticketId));
   }
 
-//  @PostMapping("/update")
-//  public ResponseEntity<TicketDto> updateTicket(
-//      @RequestBody final TicketDto ticketDto) {
-//    return ResponseEntity.ok(ticketService.updateStatus(ticketDto));
-//  }
-//
+  @PostMapping("/update")
+  public ResponseEntity<TicketDto> updateTicket(
+      @RequestBody final TicketDto ticketDto) {
+    return ResponseEntity.ok(ticketService.updateTicket(ticketDto));
+  }
 
-//
+
+
 
 }
