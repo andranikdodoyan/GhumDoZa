@@ -8,7 +8,6 @@ import com.capstone.GhumDoZa.dto.ticket.TicketListDto;
 import com.capstone.GhumDoZa.entity.ProjectEntity;
 import com.capstone.GhumDoZa.entity.TicketEntity;
 import com.capstone.GhumDoZa.enums.TicketStatus;
-import com.capstone.GhumDoZa.exception.TicketNotFoundException;
 import com.capstone.GhumDoZa.mapper.TicketEntityMapper;
 import com.capstone.GhumDoZa.repository.ProjectRepository;
 import com.capstone.GhumDoZa.repository.TicketRepository;
@@ -17,7 +16,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -27,7 +25,7 @@ public class TicketService {
   private final ProjectRepository projectRepository;
   private final TicketEntityMapper ticketEntityMapper;
 
-  //  @Transactional
+//  @Transactional
 //  public TicketDto updateStatus(TicketDto ticketDto) {
 //    TicketEntity ticket = ticketRepository.findById(ticketDto.getId())
 //        .orElseThrow(TicketNotFoundException::new);
@@ -45,6 +43,15 @@ public class TicketService {
             .collect(Collectors.toSet()))
         .build();
   }
+
+    public TicketListDto searchTicketsByKeywords(String keywords) {
+        List<TicketEntity> tickets = ticketRepository.findByHeadlineLikeIgnoreCase("%" + keywords + "%");
+        return TicketListDto.builder()
+                .ticketDtos(tickets.stream()
+                        .map(ticketEntityMapper::entityToDto)
+                        .collect(Collectors.toSet()))
+                .build();
+    }
 
   public TicketDto createTicket(TicketCreateRequestDto ticketCreateRequestDto) {
     String projectCode = ticketCreateRequestDto.getProjectCode();

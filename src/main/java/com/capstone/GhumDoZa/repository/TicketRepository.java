@@ -16,4 +16,5 @@ public interface TicketRepository extends
 
   List<TicketEntity> findAllByAssigneeId(UUID assigneeId);
   List<TicketEntity> findAllByProjectId(UUID projectId);
+  List<TicketEntity> findByHeadlineLikeIgnoreCase(String headline);
 }
