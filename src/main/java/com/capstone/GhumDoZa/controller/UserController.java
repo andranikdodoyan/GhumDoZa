@@ -34,4 +34,9 @@ public class UserController {
   public ResponseEntity<UserProfileDto> register(@RequestBody UserLoginInfoDto loginInfoDto) {
     return ResponseEntity.ok(userService.register(loginInfoDto));
   }
+
+  @GetMapping("/username/{username}")
+  public ResponseEntity<UserProfileDto> getUserProfile(@PathVariable String username) {
+    return ResponseEntity.ok(userService.getUserProfileByUsername(username));
+  }
 }
