@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS "project"
 (
     id          UUID PRIMARY KEY,
     "name"      VARCHAR,
-    code        VARCHAR,
+    code        VARCHAR UNIQUE ,
     creator_id  UUID REFERENCES "user" (id),
     description VARCHAR
 );

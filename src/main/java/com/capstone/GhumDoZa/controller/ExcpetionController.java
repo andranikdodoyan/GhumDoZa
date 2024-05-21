@@ -1,5 +1,6 @@
 package com.capstone.GhumDoZa.controller;
 
+import com.capstone.GhumDoZa.exception.DuplicateProjectCodeException;
 import com.capstone.GhumDoZa.exception.TicketNotFoundException;
 import com.capstone.GhumDoZa.exception.UserAlreadyExistsException;
 import com.capstone.GhumDoZa.exception.UserNotFoundException;
@@ -26,6 +27,11 @@ public class ExcpetionController {
 
   @ExceptionHandler(UserAlreadyExistsException.class)
   public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException() {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+  }
+
+  @ExceptionHandler(DuplicateProjectCodeException.class)
+  public ResponseEntity<ErrorResponse> handleDuplicateProjectCodeException() {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
   }
 }
