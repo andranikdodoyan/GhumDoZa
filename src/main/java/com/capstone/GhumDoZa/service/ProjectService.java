@@ -66,7 +66,7 @@ public class ProjectService {
           .user(userEntityMapper.entityToProfile(
               userRepository.findById(pue.getUserId())
                   .orElseThrow(UserNotFoundException::new)))
-          .role(pue.getRole())
+          .role(pue.getRole().getName())
           .build());
     });
     return participants;
