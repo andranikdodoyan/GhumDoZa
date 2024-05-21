@@ -21,7 +21,7 @@ public class UserController {
   private final UserService userService;
 
   @GetMapping("/{id}")
-  public ResponseEntity<String> getUserName(@PathVariable UUID id) {
+  public ResponseEntity<UserProfileDto> getUserProfile(@PathVariable UUID id) {
     return ResponseEntity.ok(userService.getNameById(id));
   }
 

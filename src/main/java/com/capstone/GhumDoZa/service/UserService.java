@@ -20,9 +20,8 @@ public class UserService {
 
   private final UserEntityMapper userEntityMapper;
 
-  public String getNameById(UUID id) {
-    UserEntity user = userRepository.findById(id).orElseThrow();
-    return user.getFirstName();
+  public UserProfileDto getNameById(UUID id) {
+    return userRepository.findById(id).map(userEntityMapper::entityToProfile).orElseThrow();
   }
 
   public UserProfileDto login(UserLoginInfoDto loginInfo) {
