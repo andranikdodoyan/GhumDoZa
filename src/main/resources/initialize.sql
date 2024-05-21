@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS "team" CASCADE;
 DROP TABLE IF EXISTS "user" CASCADE;
 DROP TABLE IF EXISTS "team_user" CASCADE;
+DROP TABLE IF EXISTS "project_user" CASCADE;
 DROP TABLE IF EXISTS "project" CASCADE;
 DROP TABLE IF EXISTS "project_team" CASCADE;
 DROP TABLE IF EXISTS "ticket" CASCADE;
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS "project"
 (
     id          UUID PRIMARY KEY,
     "name"      VARCHAR,
-    code        VARCHAR UNIQUE ,
+    code        VARCHAR UNIQUE,
     creator_id  UUID REFERENCES "user" (id),
     description VARCHAR
 );
@@ -57,6 +58,14 @@ CREATE TABLE IF NOT EXISTS "team_user"
     team_id UUID REFERENCES team (id),
     user_id UUID REFERENCES "user" (id),
     "role"  VARCHAR
+);
+
+CREATE TABLE IF NOT EXISTS "project_user"
+(
+    id         UUID PRIMARY KEY,
+    project_id UUID REFERENCES project (id),
+    user_id    UUID REFERENCES "user" (id),
+    "role"     VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS "comment"

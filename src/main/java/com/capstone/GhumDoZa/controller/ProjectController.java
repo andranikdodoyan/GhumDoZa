@@ -2,7 +2,9 @@ package com.capstone.GhumDoZa.controller;
 
 import com.capstone.GhumDoZa.dto.project.ProjectDto;
 import com.capstone.GhumDoZa.dto.project.ProjectListDto;
+import com.capstone.GhumDoZa.dto.project.ProjectParticipantDto;
 import com.capstone.GhumDoZa.service.ProjectService;
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,4 +32,8 @@ public class ProjectController {
     return ResponseEntity.ok(projectService.create(projectDto));
   }
 
+  @GetMapping(value = "/participants/{projectId}")
+  public ResponseEntity<List<ProjectParticipantDto>> getParticipants(@PathVariable UUID projectId){
+    return ResponseEntity.ok(projectService.getParticipants(projectId));
+  }
 }
