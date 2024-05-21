@@ -50,6 +50,7 @@ public class ProjectService {
         .name(projectDto.getName())
         .code(projectDto.getCode())
         .description(projectDto.getDescription())
+        .ticketSequenceCode(0)
         .build();
 
     projectRepository.save(project);

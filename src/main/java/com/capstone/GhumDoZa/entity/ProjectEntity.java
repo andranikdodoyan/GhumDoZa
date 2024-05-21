@@ -39,4 +39,7 @@ public class ProjectEntity {
   @Column(name = "description", nullable = false)
   private String description;
 
+  @Column(name = "ticket_sequence_code", nullable = false)
+  private Integer ticketSequenceCode;
+
 }

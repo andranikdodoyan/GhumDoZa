@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS "project"
     "name"      VARCHAR,
     code        VARCHAR UNIQUE,
     creator_id  UUID REFERENCES "user" (id),
-    description VARCHAR
+    description VARCHAR,
+    ticket_sequence_code INT
 );
 
 CREATE TABLE IF NOT EXISTS "ticket"

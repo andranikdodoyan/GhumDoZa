@@ -1,6 +1,7 @@
 package com.capstone.GhumDoZa.controller;
 
 import com.capstone.GhumDoZa.exception.DuplicateProjectCodeException;
+import com.capstone.GhumDoZa.exception.ProjectNotFoundByCodeException;
 import com.capstone.GhumDoZa.exception.TicketNotFoundException;
 import com.capstone.GhumDoZa.exception.UserAlreadyExistsException;
 import com.capstone.GhumDoZa.exception.UserNotFoundException;
@@ -32,6 +33,11 @@ public class ExcpetionController {
 
   @ExceptionHandler(DuplicateProjectCodeException.class)
   public ResponseEntity<ErrorResponse> handleDuplicateProjectCodeException() {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+  }
+
+  @ExceptionHandler(ProjectNotFoundByCodeException.class)
+  public ResponseEntity<ErrorResponse> handleProjectNotFoundByCodeException() {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
   }
 }

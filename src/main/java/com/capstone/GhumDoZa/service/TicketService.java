@@ -6,11 +6,13 @@ import com.capstone.GhumDoZa.dto.ticket.TicketListDto;
 import com.capstone.GhumDoZa.entity.ProjectEntity;
 import com.capstone.GhumDoZa.entity.TicketEntity;
 import com.capstone.GhumDoZa.enums.TicketStatus;
+import com.capstone.GhumDoZa.exception.ProjectNotFoundByCodeException;
 import com.capstone.GhumDoZa.exception.TicketNotFoundException;
 import com.capstone.GhumDoZa.mapper.TicketEntityMapper;
 import com.capstone.GhumDoZa.repository.ProjectRepository;
 import com.capstone.GhumDoZa.repository.TicketRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -55,9 +57,13 @@ public class TicketService {
 
   public TicketDto createTicket(TicketCreateRequestDto ticketCreateRequestDto) {
     String projectCode = ticketCreateRequestDto.getProjectCode();
-    ProjectEntity project = projectRepository.findByCode(projectCode).get();
+    ProjectEntity project = projectRepository.findByCode(projectCode).orElseThrow(
+        ProjectNotFoundByCodeException::new);
     UUID projectId = project.getId();
-    int serialNumber = ticketRepository.findAllByProjectId(projectId).size();
+    int serialNumber = project.getTicketSequenceCode();
+    project.setTicketSequenceCode(serialNumber+1);
+    projectRepository.save(project);
+
 
     String headline = String.format("[%s - %s] %s", projectCode, serialNumber,
         ticketCreateRequestDto.getHeadline());
