@@ -45,7 +45,6 @@ public class UserService {
     String hashedPassword = passwordAuthentication.hash(loginInfoDto.getPassword().toCharArray());
 
     UserEntity user = UserEntity.builder()
-        .id(UUID.randomUUID())
         .login(login)
         .password(hashedPassword)
         .firstName(loginInfoDto.getFirstName())

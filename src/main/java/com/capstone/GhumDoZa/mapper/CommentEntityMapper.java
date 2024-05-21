@@ -22,7 +22,6 @@ public class CommentEntityMapper {
 
   public CommentEntity dtoToEntity(CommentDto commentDto) {
     CommentEntity comment = CommentEntity.builder()
-        .id(UUID.randomUUID())
         .creatorId(commentDto.getCreatorId())
         .body(commentDto.getBody())
         .ticketId(commentDto.getTicketId())
