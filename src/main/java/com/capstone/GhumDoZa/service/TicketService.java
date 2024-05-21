@@ -1,13 +1,12 @@
 package com.capstone.GhumDoZa.service;
 
-import static java.util.Objects.nonNull;
-
 import com.capstone.GhumDoZa.dto.ticket.TicketCreateRequestDto;
 import com.capstone.GhumDoZa.dto.ticket.TicketDto;
 import com.capstone.GhumDoZa.dto.ticket.TicketListDto;
 import com.capstone.GhumDoZa.entity.ProjectEntity;
 import com.capstone.GhumDoZa.entity.TicketEntity;
 import com.capstone.GhumDoZa.enums.TicketStatus;
+import com.capstone.GhumDoZa.exception.TicketNotFoundException;
 import com.capstone.GhumDoZa.mapper.TicketEntityMapper;
 import com.capstone.GhumDoZa.repository.ProjectRepository;
 import com.capstone.GhumDoZa.repository.TicketRepository;
@@ -25,16 +24,17 @@ public class TicketService {
   private final ProjectRepository projectRepository;
   private final TicketEntityMapper ticketEntityMapper;
 
-//  @Transactional
-//  public TicketDto updateStatus(TicketDto ticketDto) {
-//    TicketEntity ticket = ticketRepository.findById(ticketDto.getId())
-//        .orElseThrow(TicketNotFoundException::new);
-//    ticket.setStatus(ticketDto.getStatus());
-//    ticketRepository.save(ticket);
-//    return ticketEntityMapper.entityToDto(ticket);
-//  }
-//
-//
+  public TicketDto updateTicket(TicketDto ticketDto) {
+    TicketEntity ticket = ticketRepository.findById(ticketDto.getTicketId())
+        .orElseThrow(TicketNotFoundException::new);
+    ticket.setAssigneeId(ticketDto.getAssigneeId());
+    ticket.setStatus(ticketDto.getStatus());
+    ticket.setBody(ticketDto.getBody());
+    ticketRepository.save(ticket);
+    return ticketEntityMapper.entityToDto(ticket);
+  }
+
+
   public TicketListDto getTicketsOfProject(UUID projectId) {
     List<TicketEntity> tickets = ticketRepository.findAllByProjectId(projectId);
     return TicketListDto.builder()
