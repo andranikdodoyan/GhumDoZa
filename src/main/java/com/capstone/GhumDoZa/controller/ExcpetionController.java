@@ -4,6 +4,7 @@ import com.capstone.GhumDoZa.exception.DuplicateProjectCodeException;
 import com.capstone.GhumDoZa.exception.ProjectNotFoundByCodeException;
 import com.capstone.GhumDoZa.exception.TicketNotFoundException;
 import com.capstone.GhumDoZa.exception.UserAlreadyExistsException;
+import com.capstone.GhumDoZa.exception.UserDeletionNotSuppertedException;
 import com.capstone.GhumDoZa.exception.UserNotFoundException;
 import com.capstone.GhumDoZa.exception.WrongLoginException;
 import org.springframework.http.HttpStatus;
@@ -16,28 +17,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExcpetionController {
 
   @ExceptionHandler({TicketNotFoundException.class,
-      UserNotFoundException.class})
-  public ResponseEntity<ErrorResponse> handleTicketNotFoundException() {
+      UserNotFoundException.class,
+      ProjectNotFoundByCodeException.class})
+  public ResponseEntity<ErrorResponse> handleNotFoundException() {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
   }
 
   @ExceptionHandler(WrongLoginException.class)
-  public ResponseEntity<ErrorResponse> handleWrongLoginException() {
+  public ResponseEntity<ErrorResponse> handleUnathorizedException() {
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
   }
 
-  @ExceptionHandler(UserAlreadyExistsException.class)
-  public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException() {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-  }
-
-  @ExceptionHandler(DuplicateProjectCodeException.class)
-  public ResponseEntity<ErrorResponse> handleDuplicateProjectCodeException() {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-  }
-
-  @ExceptionHandler(ProjectNotFoundByCodeException.class)
-  public ResponseEntity<ErrorResponse> handleProjectNotFoundByCodeException() {
+  @ExceptionHandler({UserAlreadyExistsException.class,
+      DuplicateProjectCodeException.class,
+      UserDeletionNotSuppertedException.class})
+  public ResponseEntity<ErrorResponse> handleBadRequestException() {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
   }
 }

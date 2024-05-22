@@ -9,10 +9,12 @@ import com.capstone.GhumDoZa.entity.ProjectEntity;
 import com.capstone.GhumDoZa.entity.UserEntity;
 import com.capstone.GhumDoZa.entity.relationEntity.ProjectUserEntity;
 import com.capstone.GhumDoZa.exception.DuplicateProjectCodeException;
+import com.capstone.GhumDoZa.exception.UserDeletionNotSuppertedException;
 import com.capstone.GhumDoZa.exception.UserNotFoundException;
 import com.capstone.GhumDoZa.mapper.ProjectEntityMapper;
 import com.capstone.GhumDoZa.mapper.UserEntityMapper;
 import com.capstone.GhumDoZa.repository.ProjectRepository;
+import com.capstone.GhumDoZa.repository.TicketRepository;
 import com.capstone.GhumDoZa.repository.UserRepository;
 import com.capstone.GhumDoZa.repository.relationRepository.ProjectUserRepository;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class ProjectService {
   private final UserEntityMapper userEntityMapper;
   private final ProjectUserRepository projectUserRepository;
   private final UserRepository userRepository;
+  private final TicketRepository ticketRepository;
 
   public ProjectListDto getProjectsOfUser(UUID userId) {
     return ProjectListDto.builder()
@@ -94,6 +97,11 @@ public class ProjectService {
   }
 
   public List<ProjectParticipantDto> removeParticipant(RemoveParticipantRequestDto requestDto) {
+    if(!ticketRepository.findAllByAssigneeId(requestDto.getUserId()).stream()
+        .filter(t -> t.getProjectId().equals(requestDto.getProjectId()))
+        .toList().isEmpty()){
+      throw new UserDeletionNotSuppertedException();
+    }
     ProjectUserEntity projectUser = projectUserRepository
         .findByProjectIdAndUserId(requestDto.getProjectId(), requestDto.getUserId())
         .orElseThrow(RuntimeException::new);
