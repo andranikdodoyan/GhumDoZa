@@ -27,8 +27,7 @@ public class UserService {
 
   public UserProfileDto login(UserLoginInfoDto loginInfo) {
     UserEntity user = userRepository.findByUsername(loginInfo.getUsername())
-        .orElseThrow();
-
+        .orElseThrow(UserNotFoundException::new);
     if (passwordAuthentication.authenticate(loginInfo.getPassword().toCharArray(),
         user.getPassword())) {
       return userEntityMapper.entityToProfile(user);
