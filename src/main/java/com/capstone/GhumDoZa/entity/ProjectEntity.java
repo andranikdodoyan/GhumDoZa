@@ -36,7 +36,7 @@ public class ProjectEntity {
   @Column(name = "creator_id", nullable = false)
   private UUID creatorId;
 
-  @Column(name = "description", nullable = false)
+  @Column(name = "description")
   private String description;
 
   @Column(name = "ticket_sequence_code", nullable = false)

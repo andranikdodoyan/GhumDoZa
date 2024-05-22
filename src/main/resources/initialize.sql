@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS "project"
     code        VARCHAR UNIQUE,
     creator_id  UUID REFERENCES "user" (id),
     description VARCHAR,
-    ticket_sequence_code INT
+    ticket_sequence_code INT DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS "ticket"
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS "ticket"
     body        VARCHAR,
     creator_id  UUID REFERENCES "user" (id),
     assignee_id UUID REFERENCES "user" (id),
-    status      VARCHAR DEFAULT 'OPEN_DEV'
+    status      VARCHAR DEFAULT 'TO_DO'
 );
 
 CREATE TABLE IF NOT EXISTS "team"

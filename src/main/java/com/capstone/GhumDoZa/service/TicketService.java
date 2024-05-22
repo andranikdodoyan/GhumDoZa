@@ -61,7 +61,7 @@ public class TicketService {
         ProjectNotFoundByCodeException::new);
     UUID projectId = project.getId();
     int serialNumber = project.getTicketSequenceCode();
-    project.setTicketSequenceCode(serialNumber+1);
+    project.setTicketSequenceCode(++serialNumber);
     projectRepository.save(project);
 
 

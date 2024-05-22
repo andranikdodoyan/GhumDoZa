@@ -1,15 +1,16 @@
 -- Populate Data to tables
-INSERT INTO "user"(id, first_name, last_name)
-values ('fbb63c65-270e-4da6-bfb8-8ee67e560c4d', 'Edmond', 'Zalinyan'),
-       ('b293084a-1fe1-458b-8218-bcdccf1418f5', 'Andranik', 'Dodoyan'),
-       ('b0d3c291-fccd-4c69-a62f-d70836e4ef12', 'Partev', 'Ghumashyan'),
-       ('34ecf170-8715-446b-8264-daefcc097ded', 'Eduard', 'Aghajanyan'),
-       ('5bf16ecb-e5df-4b9b-85ca-f442dd692082', 'Vahagn', 'Baghumian'),
-       ('a6cac03a-fe57-493b-a323-52d34e7989f7', 'Arman', 'Vostanikyan'),
-       ('69194f3c-273d-4948-923d-06e532122361', 'Rafael', 'Mkrtchyan'),
-       ('b032cf45-fcba-43b9-b2ae-fe0802762c49', 'Narek', 'Otaryan'),
-       ('3adf2ea9-f3c4-4018-938b-361734f6938a', 'Mushegh', 'Zakaryan'),
-       ('0a8ba285-0558-4e7b-85fd-b32b8b1c2a4f', 'Hayk', 'Melkonyan');
+INSERT INTO "user"(id, first_name, last_name, login, password)
+values ('fbb63c65-270e-4da6-bfb8-8ee67e560c4d', 'Edmond', 'Zalinyan', 'edmond_zalinyan',
+        '$31$16$zT4OV-yXbd0GF4MPD4wEWgejSq6xqvZDjFogkY_2gmA'),
+       ('b293084a-1fe1-458b-8218-bcdccf1418f5', 'Andranik', 'Dodoyan', null, null),
+       ('b0d3c291-fccd-4c69-a62f-d70836e4ef12', 'Partev', 'Ghumashyan', null, null),
+       ('34ecf170-8715-446b-8264-daefcc097ded', 'Eduard', 'Aghajanyan', null, null),
+       ('5bf16ecb-e5df-4b9b-85ca-f442dd692082', 'Vahagn', 'Baghumian', null, null),
+       ('a6cac03a-fe57-493b-a323-52d34e7989f7', 'Arman', 'Vostanikyan', null, null),
+       ('69194f3c-273d-4948-923d-06e532122361', 'Rafael', 'Mkrtchyan', null, null),
+       ('b032cf45-fcba-43b9-b2ae-fe0802762c49', 'Narek', 'Otaryan', null, null),
+       ('3adf2ea9-f3c4-4018-938b-361734f6938a', 'Mushegh', 'Zakaryan', null, null),
+       ('0a8ba285-0558-4e7b-85fd-b32b8b1c2a4f', 'Hayk', 'Melkonyan', null, null);
 
 INSERT INTO team(id, "name")
 values ('efdc3ab6-a454-48ef-a287-0c933eb0d5de', 'AUA'),
@@ -89,6 +90,11 @@ VALUES ('9187d91e-4792-4589-ac15-fcbc13570459', '0d4a3a6f-021c-4b7b-b342-6f78589
         'fbb63c65-270e-4da6-bfb8-8ee67e560c4d',
         'b293084a-1fe1-458b-8218-bcdccf1418f5');
 
-INSERT INTO comment(id, ticket_id, body, creator_id, created_at)
-VALUES ('8dde53c6-dbb1-4044-92c4-b1da631c4834', '9187d91e-4792-4589-ac15-fcbc13570459',
-        'comment body', 'b0d3c291-fccd-4c69-a62f-d70836e4ef12', now())
+-- INSERT INTO comment(id, ticket_id, body, creator_id, created_at)
+-- VALUES ('8dde53c6-dbb1-4044-92c4-b1da631c4834', '9187d91e-4792-4589-ac15-fcbc13570459',
+--         'comment body', 'b0d3c291-fccd-4c69-a62f-d70836e4ef12', now())
+
+INSERT INTO project_user(id,project_id,user_id,role)
+VALUES('1b3ab5dd-eeea-4b22-9981-4a13c1fb2bd0','0d4a3a6f-021c-4b7b-b342-6f78589b5564','fbb63c65-270e-4da6-bfb8-8ee67e560c4d','DEV'),
+      ('94fd0887-aa51-4def-90d1-2580ecf74c99','0d4a3a6f-021c-4b7b-b342-6f78589b5564','b293084a-1fe1-458b-8218-bcdccf1418f5','QA'),
+      ('f420c6be-08f2-48df-9fe0-e12e4e6c8dd6','0d4a3a6f-021c-4b7b-b342-6f78589b5564','b0d3c291-fccd-4c69-a62f-d70836e4ef12','DESIGNER')
