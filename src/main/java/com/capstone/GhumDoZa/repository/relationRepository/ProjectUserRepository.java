@@ -2,6 +2,7 @@ package com.capstone.GhumDoZa.repository.relationRepository;
 
 import com.capstone.GhumDoZa.entity.relationEntity.ProjectUserEntity;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,5 @@ public interface ProjectUserRepository extends
   List<ProjectUserEntity> findAllByProjectId(@NonNull UUID projectId);
 
   boolean existsByProjectIdAndUserId(UUID projectId, UUID userId);
+  Optional<ProjectUserEntity> findByProjectIdAndUserId(UUID projectId, UUID userId);
 }

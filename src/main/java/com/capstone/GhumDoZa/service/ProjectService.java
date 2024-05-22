@@ -4,6 +4,7 @@ import com.capstone.GhumDoZa.dto.project.AddParticipantRequestDto;
 import com.capstone.GhumDoZa.dto.project.ProjectDto;
 import com.capstone.GhumDoZa.dto.project.ProjectListDto;
 import com.capstone.GhumDoZa.dto.project.ProjectParticipantDto;
+import com.capstone.GhumDoZa.dto.project.RemoveParticipantRequestDto;
 import com.capstone.GhumDoZa.entity.ProjectEntity;
 import com.capstone.GhumDoZa.entity.UserEntity;
 import com.capstone.GhumDoZa.entity.relationEntity.ProjectUserEntity;
@@ -90,5 +91,14 @@ public class ProjectService {
     }
 
     return getParticipants(addParticipantRequestDto.getProjectId());
+  }
+
+  public List<ProjectParticipantDto> removeParticipant(RemoveParticipantRequestDto requestDto) {
+    ProjectUserEntity projectUser = projectUserRepository
+        .findByProjectIdAndUserId(requestDto.getProjectId(), requestDto.getUserId())
+        .orElseThrow(RuntimeException::new);
+
+    projectUserRepository.delete(projectUser);
+    return getParticipants(requestDto.getProjectId());
   }
 }
