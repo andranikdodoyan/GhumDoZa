@@ -18,11 +18,10 @@ public interface ProjectRepository extends
   @Query(value = """
       SELECT p.*
       FROM project p
-      WHERE p.id IN (SELECT pt.project_id
+      WHERE p.id IN (SELECT pu.project_id
                            FROM project_team
-                                    LEFT JOIN project_team pt ON p.id = pt.project_id
-                                    LEFT JOIN team_user tu ON pt.team_id = tu.team_id
-                           WHERE tu.user_id = ?1) OR p.creator_id=?1""", nativeQuery = true)
+                                    LEFT JOIN project_user pu ON p.id = pu.project_id
+                           WHERE pu.user_id = ?1) OR p.creator_id=?1""", nativeQuery = true)
   Set<ProjectEntity> findProjectsOfUserWithId(@NonNull UUID id);
 
   Optional<ProjectEntity> findByCode(String code);
