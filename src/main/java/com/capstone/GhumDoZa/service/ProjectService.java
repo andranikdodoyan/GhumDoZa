@@ -1,9 +1,9 @@
 package com.capstone.GhumDoZa.service;
 
+import com.capstone.GhumDoZa.dto.project.AddParticipantRequestDto;
 import com.capstone.GhumDoZa.dto.project.ProjectDto;
 import com.capstone.GhumDoZa.dto.project.ProjectListDto;
 import com.capstone.GhumDoZa.dto.project.ProjectParticipantDto;
-import com.capstone.GhumDoZa.dto.user.UserProfileDto;
 import com.capstone.GhumDoZa.entity.ProjectEntity;
 import com.capstone.GhumDoZa.entity.UserEntity;
 import com.capstone.GhumDoZa.entity.relationEntity.ProjectUserEntity;
@@ -71,5 +71,24 @@ public class ProjectService {
           .build());
     });
     return participants;
+  }
+
+  public List<ProjectParticipantDto> addParticipant(
+      AddParticipantRequestDto addParticipantRequestDto) {
+    UserEntity user = userRepository.findByUsername(addParticipantRequestDto.getUsername())
+        .orElseThrow(UserNotFoundException::new);
+
+    //If not added previously
+    if (!projectUserRepository
+        .existsByProjectIdAndUserId(addParticipantRequestDto.getProjectId(), user.getId())) {
+      ProjectUserEntity projectUserEntity = ProjectUserEntity.builder()
+          .userId(user.getId())
+          .projectId(addParticipantRequestDto.getProjectId())
+          .role(addParticipantRequestDto.getRole())
+          .build();
+      projectUserRepository.save(projectUserEntity);
+    }
+
+    return getParticipants(addParticipantRequestDto.getProjectId());
   }
 }

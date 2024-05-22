@@ -12,4 +12,6 @@ public interface ProjectUserRepository extends
     JpaRepository<ProjectUserEntity, UUID> {
 
   List<ProjectUserEntity> findAllByProjectId(@NonNull UUID projectId);
+
+  boolean existsByProjectIdAndUserId(UUID projectId, UUID userId);
 }
