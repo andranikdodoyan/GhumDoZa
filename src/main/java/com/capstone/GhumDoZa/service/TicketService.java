@@ -12,7 +12,6 @@ import com.capstone.GhumDoZa.mapper.TicketEntityMapper;
 import com.capstone.GhumDoZa.repository.ProjectRepository;
 import com.capstone.GhumDoZa.repository.TicketRepository;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -46,14 +45,15 @@ public class TicketService {
         .build();
   }
 
-    public TicketListDto searchTicketsByKeywords(String keywords) {
-        List<TicketEntity> tickets = ticketRepository.findByHeadlineLikeIgnoreCase("%" + keywords + "%");
-        return TicketListDto.builder()
-                .ticketDtos(tickets.stream()
-                        .map(ticketEntityMapper::entityToDto)
-                        .collect(Collectors.toSet()))
-                .build();
-    }
+  public TicketListDto searchTicketsByKeywords(String keywords) {
+    List<TicketEntity> tickets = ticketRepository.findByHeadlineLikeIgnoreCase(
+        "%" + keywords + "%");
+    return TicketListDto.builder()
+        .ticketDtos(tickets.stream()
+            .map(ticketEntityMapper::entityToDto)
+            .collect(Collectors.toSet()))
+        .build();
+  }
 
   public TicketDto createTicket(TicketCreateRequestDto ticketCreateRequestDto) {
     String projectCode = ticketCreateRequestDto.getProjectCode();
@@ -63,7 +63,6 @@ public class TicketService {
     int serialNumber = project.getTicketSequenceCode();
     project.setTicketSequenceCode(++serialNumber);
     projectRepository.save(project);
-
 
     String headline = String.format("[%s - %s] %s", projectCode, serialNumber,
         ticketCreateRequestDto.getHeadline());
@@ -98,5 +97,12 @@ public class TicketService {
     ticketRepository.deleteById(ticketId);
 
     return !ticketRepository.existsById(ticketId);
+  }
+
+  public TicketDto getTicket(UUID ticketId) {
+    TicketEntity ticketEntity = ticketRepository.findById(ticketId)
+        .orElseThrow(TicketNotFoundException::new);
+
+    return ticketEntityMapper.entityToDto(ticketEntity);
   }
 }
