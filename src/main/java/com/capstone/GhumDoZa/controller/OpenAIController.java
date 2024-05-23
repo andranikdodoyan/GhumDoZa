@@ -38,7 +38,9 @@ public class OpenAIController {
 
     @GetMapping("/grammar")
     public String checkGrammar(@RequestParam("text") String text){
-        String prompt = "Please check and correct the grammar of the following text, and return the corrected version: " + text;
+        String prompt = "Please check and correct the grammar of the following text, and return the corrected version," 
+            + "If the text has no meaning or mistake do not change it and return it as it is. "
+            + "Return only the text, no need to wrap your answer with human-like phrases : " + text;
         Message userMessage = new Message("user", prompt);
 
         List<Message> messages = List.of(userMessage);
