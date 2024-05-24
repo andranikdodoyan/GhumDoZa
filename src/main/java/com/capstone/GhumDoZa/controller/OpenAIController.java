@@ -62,7 +62,13 @@ public class OpenAIController {
 
     @GetMapping("/task")
     public String enhanceTask(@RequestParam("text") String text){
-        String prompt = "This is the task description which we currently have, given all the information that you have suggest a better way of formulating given task so that the requirements a more well defined and the problem and goal are well defined. So, give overall better task description. Here is it: " + text;
+        String prompt = "This is the task description which we currently have,"
+            + " given all the information that you have suggest a better way of formulating given task "
+            + "so that the requirements a more well defined and the problem and goal are well defined."
+            + " So, give overall better task description. If the text has no meaning or mistake "
+            + "do not change it and return it as it is. "
+            + "Return only the text, no need to wrap your answer with human-like phrases. "
+            + "Here is it: " + text;
         Message userMessage = new Message("user", prompt);
 
         List<Message> messages = List.of(userMessage);
